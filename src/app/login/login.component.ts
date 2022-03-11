@@ -39,7 +39,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {}
 
-  connect() {
+  isLoading = false;
+  connect(elm: HTMLButtonElement) {
+    if (this.isLoading) return;
+    elm.classList.add('loading');
+    this.isLoading = true;
     if (this.userNameCtrl.valid) {
       this.authService.rememberDevice();
       const vUrlRedirect = this.authService.getRedirectAfterLogin();
@@ -50,6 +54,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
       this.authService.loginWithHint(this.userNameCtrl.value);
     } else {
       this.toastNotifService.showWarning('Veuillez saisir votre Token');
+      elm.classList.remove('loading');
+      this.isLoading = false;
     }
   }
 
