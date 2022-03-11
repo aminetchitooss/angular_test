@@ -1,0 +1,186 @@
+@use "src/styles/variables.scss" as var;
+
+.calendar-frame {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  &.grd {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    height: 100%;
+
+    .day-slot {
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      padding: 0 !important;
+    }
+  }
+
+  &.dec {
+    min-height: calc(100vh - 186px);
+    .day-slot {
+      min-height: 126px;
+    }
+  }
+
+  &.widthGap {
+    gap: 0.25rem;
+  }
+
+  .day-slot {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.7rem 0.7rem 1rem;
+
+    .calendar-day {
+      position: absolute;
+      left: 0.5rem;
+      top: 0.5rem;
+      color: var(--gray-350);
+      font-size: 0.8125rem;
+      line-height: 18px;
+    }
+
+    .spacer {
+      height: 0.5rem;
+      width: 100%;
+    }
+
+    &.isToday,
+    &.lyoum {
+      .calendar-day {
+        font-weight: 500;
+        .holiday-text {
+          font-weight: 500;
+          color: var(--primary-color);
+        }
+      }
+    }
+
+    &.lyoum {
+      border-color: var(--primary-color);
+      .calendar-day {
+        color: var(--primary-color);
+      }
+    }
+
+    &.isToday {
+      border-color: var(--gray-350);
+      .calendar-day {
+        color: var(--gray-500);
+      }
+    }
+
+    .status-cal {
+      display: block;
+      font-size: 0.75rem;
+      text-align: center;
+      margin-top: 0.5rem;
+      &:not(.full-day) {
+        color: var(--gray-300);
+      }
+
+      em {
+        background-color: transparent !important;
+        display: inline;
+        font-style: normal;
+        &.bold {
+          font-weight: 600;
+        }
+        &.icon-primary {
+          color: var(--primary-color);
+        }
+        &.icon-danger {
+          color: var(--danger-color);
+        }
+      }
+    }
+  }
+}
+
+.holiday-text {
+  color: var(--primary-light-color);
+}
+
+.current {
+  .holiday-text {
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+}
+
+.disabled {
+  // fill: var(--gray-50) !important;
+  cursor: not-allowed !important;
+  svg {
+    opacity: 0.2;
+  }
+}
+
+$borderColor: var(--light-border);
+
+@mixin stylingCal {
+  width: calc(20% - 0.25rem);
+
+  border: 1px solid $borderColor;
+  border-radius: 8px;
+  // border-bottom: 1px solid $borderColor;
+  // border-right: 1px solid $borderColor;
+  padding: 1rem;
+
+  &.hide {
+    opacity: 0.3;
+    // pointer-events: none;
+  }
+
+  // &:nth-child(1),
+  // &:nth-child(2),
+  // &:nth-child(3),
+  // &:nth-child(4),
+  // &:nth-child(5) {
+  //   border-top: 1px solid $borderColor;
+  //   border-bottom: 0;
+  //   border-right: 1px solid transparent;
+  //   box-shadow: -1px 0px 0px 0px $borderColor;
+  // }
+
+  // &:nth-child(6),
+  // &:nth-child(7),
+  // &:nth-child(8),
+  // &:nth-child(9),
+  // &:nth-child(10) {
+  //   border-top: 1px solid $borderColor;
+  // }
+
+  // &:nth-child(5n) {
+  //   border-right: 1px solid $borderColor;
+  // }
+  // &:nth-child(5n + 1) {
+  //   border-left: 1px solid $borderColor;
+  // }
+  // &:nth-child(n + 21) {
+  //   border-bottom: 1px solid $borderColor;
+  // }
+}
+
+.calendarStyle {
+  @include stylingCal();
+}
+@media (max-height: var.$maxHeightSmallScreen) {
+  .calendar-frame {
+    .day-slot {
+      padding: 1.8rem 0.4rem 1rem;
+    }
+  }
+}
+.count {
+  position: relative;
+  p {
+    position: absolute;
+    bottom: -18px;
+  }
+}

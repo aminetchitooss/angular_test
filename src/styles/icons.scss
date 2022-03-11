@@ -1,0 +1,90 @@
+@use "src/styles/variables.scss" as var;
+
+.svgIconContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    height: inherit;
+    width: inherit;
+  }
+}
+
+@mixin halved {
+  .svgIconContainer {
+    svg {
+      height: 50% !important;
+      width: 50% !important;
+    }
+  }
+}
+
+.icon-half {
+  @include halved();
+}
+
+@mixin center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include halved();
+}
+
+$colors: "primary", "accent", "success", "warning", "danger";
+
+@each $color in $colors {
+  .icon-#{$color}-text {
+    color: var(--#{$color}-color) !important;
+  }
+  .icon-#{$color} {
+    background: var(--#{$color}-color) !important;
+    border-color: transparent !important;
+    fill: white !important;
+    @include center();
+    &.filled {
+      fill: var(--#{$color}-color) !important;
+      background: transparent !important;
+    }
+  }
+  .icon-#{$color}-fill {
+    fill: var(--#{$color}-color) !important;
+  }
+}
+.icon-none {
+  background: var(--gray-350) !important;
+  border-color: transparent !important;
+  fill: white !important;
+  @include center();
+  &.filled {
+    fill: var(--info-color) !important;
+    background: transparent !important;
+  }
+}
+.icon-none-text {
+  color: var(--info-color) !important;
+}
+
+.icon-gray {
+  background: var(--gray-350) !important;
+  border-color: transparent !important;
+  fill: white !important;
+  @include center();
+  &.filled {
+    fill: var(--gray-350) !important;
+    background: transparent !important;
+  }
+}
+
+@media (max-height: var.$maxHeightSmallScreen) {
+  .prev-next-month {
+    svg {
+      width: 8px;
+      height: 13.65px;
+    }
+  }
+}
+.no-transition {
+  transition: none !important;
+}

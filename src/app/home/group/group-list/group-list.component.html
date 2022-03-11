@@ -1,0 +1,10 @@
+<a [routerLink]="['/home/dashboard']" class="return back" matRipple>
+  <svg-icon src="previous"></svg-icon>
+  Mes Groupes/Equipes
+</a>
+
+<space-or-group-list [isLoaded]="isLoaded" [elementList]="groupList" [isGroup]="true"></space-or-group-list>
+
+<a class="center group-action" [routerLink]="['/home/group-list/create']">
+  <button class="btn-primary" matRipple>Créer un Groupe/Equipe</button>
+</a>

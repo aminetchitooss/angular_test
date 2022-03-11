@@ -1,0 +1,92 @@
+<div class="header flex between">
+  <a [routerLink]="['/home/' + (isSpace ? 'space' : 'group') + '-list']" class="return back" matRipple>
+    <svg-icon src="previous"></svg-icon>
+    <p [ngClass]="{ 'text-pending': !groupData.NAME }">
+      {{ groupData.NAME }}
+      <em *ngIf="isSpace"> {{ groupData.NBMAX }} {{ groupData.NBMAX && groupData.NBMAX > 1 ? "places" : "place" }} </em>
+    </p>
+  </a>
+  <!-- <button class="btn-primary flex small">
+        <svg-icon src="edit"></svg-icon>
+        Éditer
+    </button> -->
+</div>
+
+<div class="wrapper">
+  <div class="scrollDays flex">
+    <div class="day-calendar center" *ngFor="let calendar of calendarDaysPending">
+      <p class="text-pending calendar"></p>
+      <p class="day-pending"></p>
+    </div>
+    <div
+      class="day-calendar center"
+      [ngClass]="{ active: calendar.isActive }"
+      matRipple
+      id="{{ calendar.identifier }}"
+      (click)="chooseDay(calendar)"
+      *ngFor="let calendar of calendarDays"
+    >
+      <p>{{ calendar.dayLetter }}</p>
+      <p class="dayInMonth">{{ calendar.day }}</p>
+      <p>{{ calendar.month }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="day-info" [ngClass]="{ empty: dataResult.day?.length == 0 }">
+  <div class="day-info__data flex" *ngFor="let dailyData of WeekPending">
+    <div class="icon-pending user"></div>
+    <div class="flex al-start column w-100">
+      <p class="text-pending calendar mb-2"></p>
+      <p class="text-pending w-50"></p>
+    </div>
+  </div>
+  <ng-container *ngFor="let day of dataResult.day">
+    <div class="day-info__data flex" *ngFor="let dailyData of day.userSlots">
+      <picture class="user small" [profile]="day.userInfo | activityInfo"></picture>
+
+      <div class="w-100">
+        <p class="name capitlaized">{{ day.userInfo.FIRSTNAME + " " + day.userInfo.LASTNAME?.toLowerCase() }}</p>
+        <ng-container *ngIf="dailyData | multipleStatus: true as statusData">
+          <ng-container *ngIf="statusData.isMultiple == false; else multipleData">
+            <ng-container *ngIf="statusData.data?.class | statusClass as currentClass">
+              <p class="flex" [class]="currentClass + '-text'">
+                <svg-icon class="center filled icon-half" [class]="currentClass" [src]="statusData.data?.icon"> </svg-icon>
+                <em>
+                  {{ statusData.data?.label }}
+                </em>
+              </p>
+            </ng-container>
+          </ng-container>
+
+          <ng-template #multipleData>
+            <p class="flex multiple">
+              <ng-container *ngIf="statusData.dataMorning?.class | statusClass as currentClass">
+                <em class="flex column">
+                  <em class="bold">Matin</em>
+                  <div class="flex" [class]="currentClass + '-text'">
+                    <svg-icon class="center filled icon-half" [class]="currentClass" [src]="statusData.dataMorning?.icon"> </svg-icon>
+                    {{ statusData.dataMorning?.label }}
+                  </div>
+                </em>
+              </ng-container>
+              <ng-container *ngIf="statusData.dataAfterNoon?.class | statusClass as currentClass">
+                <em class="flex column">
+                  <em class="bold">Après-midi</em>
+                  <div class="flex" [class]="currentClass + '-text'">
+                    <svg-icon class="center filled icon-half" [class]="currentClass" [src]="statusData.dataAfterNoon?.icon"> </svg-icon>
+
+                    {{ statusData.dataAfterNoon?.label }}
+                  </div>
+                </em>
+              </ng-container>
+            </p>
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+  <div *ngIf="dataResult.day?.length == 0" class="emptyList">
+    <p class="mb-4">Aucun Collaborateur trouvée sur {{ isSpace ? "cet Espace/Zone" : "ce Groupe/Equipe" }}</p>
+  </div>
+</div>

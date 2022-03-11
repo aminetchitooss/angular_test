@@ -1,0 +1,18 @@
+<a [routerLink]="['/home/dashboard']" class="return back" matRipple>
+  <svg-icon src="previous"></svg-icon>
+  Mes Espaces/Zones
+</a>
+
+<ng-container *ngIf="currentUser$ | async as currentUser">
+  <ng-container *ngIf="spaceList.length > 0; else noSpace">
+    <space-or-group-list [isLoaded]="isLoaded" [elementList]="spaceList"> </space-or-group-list>
+  </ng-container>
+  <ng-template #noSpace>
+    <div class="center px-4 notAffected" *ngIf="!currentUser.ISMANAGER">
+      <p>Vous ne faites actuellement partie d’aucun Espace/Zone</p>
+    </div>
+  </ng-template>
+  <a class="center group-action" [routerLink]="['/home/space-list/create']" *ngIf="currentUser.ISMANAGER">
+    <button class="btn-primary" matRipple>Créer un Espace/Zone</button>
+  </a>
+</ng-container>

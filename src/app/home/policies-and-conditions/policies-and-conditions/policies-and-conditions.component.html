@@ -1,0 +1,19 @@
+<div class="pageFrame policyRoute defaultRoute">
+    <a [routerLink]="['/home/dashboard']" class="return back pageFrame__return" matRipple>
+        <svg-icon src="previous"></svg-icon>
+        {{title}}
+    </a>
+    <div class="main policyRoute-main">
+        <h2 class="main__title desktop"> {{ title }}</h2>
+        <div class="main__scrolled">
+            <ul class="list_routes">
+                <li class="politicList flex" *ngFor="let item of list_routes" matRipple
+                    (mouseenter)="startPreload(item.route)">
+                    <a class="flex" [routerLink]="[item.route]">- {{item.title}}
+                        <svg-icon src="next"></svg-icon>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

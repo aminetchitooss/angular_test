@@ -1,0 +1,50 @@
+@use "src/styles/variables.scss" as var;
+
+:host {
+  position: relative;
+  display: block;
+  //   background-color: var(--bg-color);
+}
+
+.modal-title {
+  margin-bottom: 2.5rem;
+}
+
+em {
+  font-style: normal;
+  &.title {
+    color: var(--text-color);
+    font-weight: 700;
+  }
+}
+.setting-actions {
+  margin-top: 1rem;
+  min-height: 44px;
+  position: relative;
+}
+button {
+  position: relative;
+  z-index: 2;
+  min-width: 130px;
+  &:last-child {
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: var.$maxSmallScreen) {
+  .setting-actions {
+    justify-content: space-around;
+    $width: 45%;
+    button {
+      width: $width;
+      height: 48px;
+      margin: 0;
+    }
+    .wrapper {
+      width: $width;
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

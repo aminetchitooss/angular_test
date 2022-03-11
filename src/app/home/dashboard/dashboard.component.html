@@ -1,0 +1,78 @@
+<ng-container *ngIf="searchUserChanges$ | async"></ng-container>
+<ng-container *ngIf="_dataService.isMobile$ | async as mobileLayout; else MidScreenOrHigher">
+  <div class="h-100 w-100 center">
+    <construction></construction>
+  </div>
+</ng-container>
+<ng-template #MidScreenOrHigher>
+  <ng-container *ngIf="currentUser$ | async as currentUser">
+    <div class="dash" [ngClass]="{ isMobile: _dataService.isMobile$ | async, withNavBar: _dataService.isHandset$ | async }">
+      <div class="dash__result">
+        <ng-container *ngIf="isLoaded; else loaded">
+          <div class="text-pending title first-text mb-2"></div>
+          <div class="text-pending half sub-text mb-8"></div>
+          <div class="flex card-body">
+            <div class="frame-card center column" *ngFor="let item of list">
+              <div class="text-pending daysample mb-8"></div>
+              <div class="flex column card-sample">
+                <div class="text-pending medium box mb-2"></div>
+                <div class="text-pending medium"></div>
+                <div class="line"></div>
+                <div class="flex">
+                  <div class="center column">
+                    <div class="icon-pending mb-2"></div>
+                    <p class="text-pending small mini-text"></p>
+                  </div>
+                  <div class="center column">
+                    <div class="icon-pending mb-2 middle-sample"></div>
+                    <p class="text-pending small mini-text"></p>
+                  </div>
+                  <div class="center column">
+                    <div class="icon-pending mb-2"></div>
+                    <p class="text-pending small mini-text"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #loaded>
+          <div class="center column emptyDash" *ngIf="dataResult.gauge?.length == 0; else data">
+            <h2>Aucune information à disposition</h2>
+            <p>Vous ne faites actuellement partie d’aucun Espace/Zone. Cependant vous pouvez afficher les informations d’un collaborateur en utilisant la barre de recherche.</p>
+          </div>
+          <ng-template #data>
+            <p class="title">Présence de la semaine</p>
+            <div class="flex weekly-frame prevNext">
+              <p class="week-title">{{ weekTitle }}</p>
+              <svg-icon matRipple class="center previous mirrored icon-half" (click)="previousWeek()" [ngClass]="{ disabled: !isUnderSearchScopePrevious }" matRipple src="next">
+              </svg-icon>
+              <svg-icon matRipple class="center icon-half" [ngClass]="{ disabled: !isUnderSearchScopeNextMonth }" (click)="nextWeek()" matRipple src="next"> </svg-icon>
+            </div>
+
+            <div class="flex dash-week weekWidth">
+              <ng-container *ngFor="let activity of dataResult.week">
+                <ng-container *ngFor="let slot of activity.userSlots" class="weekWidth-item">
+                  <p class="weekWidth-item" [ngClass]="slot.DATE | isToday: dataResult?.currentDate">
+                    {{ slot.DATE | dashweekFormat }} <em class="holiday-text" *ngIf="slot.HOLIDAY"> (férié)</em>
+                  </p>
+                </ng-container>
+              </ng-container>
+            </div>
+
+            <space-cards
+              class="flex calendar-frame weekWidth"
+              (updateStatus)="toggleSemiDayStatus($event)"
+              (isDayUpdated)="daySlotUpdated($event)"
+              [currentUser]="currentUser"
+              [dataResult]="dataResult"
+              [isUnderSearchScopePrevious]="isUnderSearchScopePrevious"
+            >
+            </space-cards>
+          </ng-template>
+        </ng-template>
+      </div>
+      <div class="fixHeight"></div>
+    </div>
+  </ng-container>
+</ng-template>

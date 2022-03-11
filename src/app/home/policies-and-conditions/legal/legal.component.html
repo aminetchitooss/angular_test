@@ -1,0 +1,43 @@
+<div class="pageFrame">
+
+    <div class="main">
+        <a class="main__return flex" [routerLink]="['/home/policies']" matRipple>
+            <svg-icon src="previous"></svg-icon>
+            Conditions et politiques
+        </a>
+        <h2 class="main__title"> {{title}}</h2>
+        <div class="main__scrolled">
+            <p class="titleText desc ">{{'LEGAL.parag1-part1' | translate}}
+                <a class="siteLink" href="{{'LEGAL.url' | translate}}" target="_blank">{{
+                    'LEGAL.url' | translate}}</a>
+                {{'LEGAL.parag1-part3' | translate}}
+                <a class="siteLink" href="tel:{{'LEGAL.tel' | translate}}">{{'LEGAL.tel' | translate}}</a>
+                -
+                <a class="siteLink" href="{{'LEGAL.website' | translate}}" target="_blank">{{ 'LEGAL.website' |
+                    translate}}</a>
+            </p>
+            <p class="titleText desc ">{{'LEGAL.parag2' | translate}}</p>
+            <p class="titleText desc ">{{'LEGAL.parag3-part1' | translate}}
+                <a class="siteLink" href="{{'LEGAL.url' | translate}}" target="_blank">{{
+                    'LEGAL.url' | translate}}</a>
+                {{'LEGAL.parag3-part3' | translate}}
+                <a class="siteLink" href="tel:{{'LEGAL.tel' | translate}}">{{'LEGAL.tel' | translate}}</a>
+                -
+                <a class="siteLink" href="{{'LEGAL.website' | translate}}" target="_blank">{{ 'LEGAL.website' |
+                    translate}}</a>
+            </p>
+            <p class="titleText desc ">{{'LEGAL.parag4-part1' | translate}}
+
+                <a class="siteLink" href="{{'LEGAL.url' | translate}}" target="_blank">{{
+                    'LEGAL.url' | translate}}</a>
+                {{'LEGAL.parag4-part3' | translate}}
+            </p>
+            <p class="titleText desc ">{{'LEGAL.parag5' | translate}}
+                <a class="siteLink" href="tel:{{'LEGAL.tel' | translate}}">{{'LEGAL.tel' | translate}}</a>
+                -
+                <a class="siteLink" href="{{'LEGAL.website' | translate}}" target="_blank">{{ 'LEGAL.website' |
+                    translate}}</a>
+            </p>
+        </div>
+    </div>
+</div>

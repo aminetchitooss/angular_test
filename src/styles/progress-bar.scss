@@ -1,0 +1,34 @@
+.container-bar {
+  position: relative;
+  display: block;
+  height: 66px;
+  width: 100px;
+}
+.subcontainer {
+  transform: rotate(172deg);
+  position: absolute;
+  svg {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    z-index: 2;
+
+    &.placeholder {
+      position: absolute;
+      z-index: 1;
+    }
+  }
+}
+
+circle {
+  stroke-linecap: round;
+  transition: all 0.5s linear;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+}
+.placeholder {
+  circle {
+    stroke: var(--gray-50);
+    stroke-dashoffset: 150;
+  }
+}

@@ -1,0 +1,105 @@
+:host {
+  background-color: var(--bg-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  padding-right: 1rem;
+  align-items: flex-start;
+
+  .return {
+    margin-top: 1rem;
+    margin-left: calc(1rem - 4px);
+    font-size: 1.25rem;
+    p {
+      position: relative;
+      min-width: 150px;
+    }
+    em {
+      position: absolute;
+      left: 0;
+      font-size: 1rem;
+      font-weight: 300;
+      bottom: -1.5rem;
+      line-height: 1.5rem;
+    }
+  }
+  button {
+    margin-top: 1rem;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    border: none;
+    svg-icon {
+      width: 16px;
+      height: 16px;
+      fill: white;
+      margin-right: 0.5rem;
+    }
+  }
+}
+.wrapper {
+  width: calc(100% - 1rem);
+  margin-left: 1rem;
+
+  .scrollDays {
+    margin-bottom: 2.375rem;
+    margin-top: 0.5rem;
+    min-height: 6rem;
+
+    .day-calendar {
+      padding: 6px 0;
+    }
+  }
+}
+
+.day-info {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-left: 1rem;
+
+  &.empty {
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  &__data {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-100);
+
+    .user {
+      margin-right: 0.5rem;
+    }
+
+    .name {
+      font-size: 1.125rem;
+      line-height: 1.5rem;
+      margin-left: 0.5rem;
+    }
+
+    em {
+      line-height: 1.25rem;
+      font-size: 0.875rem;
+    }
+
+    svg-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .multiple {
+      padding-left: 0.5rem;
+      em.flex:first-child {
+        margin-right: 1rem;
+      }
+    }
+  }
+  .emptyList {
+    background-color: var(--bg-dark-gray-color);
+    border-radius: 6px;
+    padding: 1rem;
+    text-align: center;
+  }
+}

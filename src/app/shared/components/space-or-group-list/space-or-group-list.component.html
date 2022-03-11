@@ -1,0 +1,63 @@
+<ng-container class="settings" *ngIf="currentUser$ | async as currentUser">
+  <div class="list-group overlay" [ngClass]="{ isNotManager: !currentUser.ISMANAGER && !isGroup }">
+    <div class="loader-list">
+      <div *ngFor="let item of loaderList" class="group-item flex between al-start">
+        <div class="flex column al-start">
+          <p class="text-pending min mb-2"></p>
+          <div class="detail-info">
+            <p class="text-pending medium mb-1"></p>
+            <div class="flex">
+              <div class="icon-pending miniS mr-2"></div>
+              <div class="icon-pending miniS mr-2"></div>
+              <div class="icon-pending miniS"></div>
+            </div>
+          </div>
+        </div>
+        <div class="flex mr-4">
+          <div class="icon-pending miniM"></div>
+        </div>
+      </div>
+    </div>
+    <div class="group-item between al-start flex" *ngFor="let elm of elementList; let index = index" [ngClass]="{ shake: elm.newAdded }">
+      <a
+        class="group-item__consult flex w-100"
+        matRipple
+        *ngIf="isMobileNav; else desc"
+        [routerLink]="'/home/' + (elm.TYP == GROUP_TYPE.Group ? 'group' : 'space') + '-list/detail/' + elm.ID"
+      >
+        <ng-container [ngTemplateOutlet]="detail" [ngTemplateOutletContext]="{ $implicit: elm }"> </ng-container>
+      </a>
+      <ng-template #desc>
+        <ng-container [ngTemplateOutlet]="detail" [ngTemplateOutletContext]="{ $implicit: elm }"> </ng-container>
+      </ng-template>
+      <div class="group-item__action flex column">
+        <div class="center actions mr-4" (click)="editElement(elm, edit, index)" #edit>
+          <svg-icon *ngIf="elm.ADMIN" class="edit" src="edit" matRipple></svg-icon>
+          <svg-icon *ngIf="!elm.ADMIN" class="icon-primary-fill" src="info" matRipple></svg-icon>
+          <!-- <p>{{ elm.ADMIN ? "" : "" }}</p> -->
+          <!-- <div class="spinner dark"></div> -->
+        </div>
+      </div>
+    </div>
+    <div class="emptyList" *ngIf="elementList.length == 0 && loaderList.length == 0">
+      <p>Vous ne faites partie d'aucun {{ isGroup ? "Groupe/Equipe" : "Espace/Zone" }} pour le moment. Créez le votre dès maintenant !</p>
+    </div>
+  </div>
+
+  <ng-template #detail let-elment>
+    <ng-container *ngIf="group_Model(elment) as elm">
+      <div class="flex column al-start">
+        <p class="title-group text-primary">{{ elm.NAME + (elm.ADMIN ? " (Admin)" : "") }}</p>
+        <div class="detail-info">
+          <p class="text-gray light mb-1">Personne{{ elm.MEMBER_LIST && elm.MEMBER_LIST.length > 1 ? "s" : "" }} ({{ elm.MEMBER_LIST?.length }})</p>
+          <div class="flex">
+            <ng-container *ngFor="let user of elm.MEMBER_LIST | sortByAdmin: currentUser | slice: 0:6; let isLast = last">
+              <picture class="xsmall mr-2" [ngClass]="{ isAdmin: user.ADMIN }" [profile]="user.UPN | photoByUpn"></picture>
+              <p class="text-gray light" *ngIf="isLast">{{ elm.MEMBER_LIST && elm.MEMBER_LIST.length > 6 ? "..." : "" }}</p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-template>
+</ng-container>

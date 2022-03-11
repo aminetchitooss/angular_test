@@ -1,0 +1,15 @@
+mat-form-field {
+  width: 100%;
+}
+
+.field {
+  position: relative;
+  width: 48%;
+
+  .tag {
+    position: absolute;
+    right: 1rem;
+    top: 20px;
+    line-height: 22px;
+  }
+}

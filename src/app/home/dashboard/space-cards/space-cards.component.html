@@ -1,0 +1,46 @@
+<ng-container *ngFor="let weekDay of dataResult.searchDateWeek; let index = index">
+  <div class="space-card weekWidth-item">
+    <div class="space-info" *ngFor="let item of dataResult.gauge">
+      <div class="center" *ngIf="item.groupeGauges | spaceData: weekDay as data">
+        <progress-bar [value]="data.result" [delay]="index * 100 + 300"> </progress-bar>
+        <p>{{ data.result | round }}%</p>
+      </div>
+      <p class="space-info-name">{{ item.groupeInfo.NAME }}</p>
+    </div>
+    <div line class="line"></div>
+    <ng-container *ngFor="let week of dataResult.week">
+      <ng-container *ngIf="week.userSlots[index] as slot">
+        <ng-container *ngIf="slot | multipleStatus as statusData">
+          <calendar-element
+            [today]="dataResult.currentDate"
+            [currentUser]="currentUser"
+            [slot]="slot"
+            [statusData]="statusData"
+            [index]="index"
+            (updateStatus)="updateSemiDayStatus($event)"
+            (daySlotUpdated)="daySlotUpdated($event)"
+          >
+            <svg-icon
+              *ngIf="!currentUser.INTERN"
+              dots
+              class="center dots"
+              matRipple
+              [src]="'dots'"
+              [matMenuTriggerFor]="declareSemiDay"
+              [matMenuTriggerData]="{ slotData: slot, index: index }"
+            >
+            </svg-icon>
+          </calendar-element>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-container>
+
+<mat-menu #declareSemiDay="matMenu" class="declare-semi-day">
+  <ng-template matMenuContent let-slot="slotData" let-current="index">
+    <button mat-menu-item aria-label="declare semi day" class="menuLink" matRipple (click)="updateSemiDayStatus({slot,index:current})">
+      <span>{{ slot.STATUS_TYPE_MORNING | semiDayMenuTitle: slot.STATUS_TYPE_AFTER_NOON }} </span>
+    </button>
+  </ng-template>
+</mat-menu>

@@ -1,0 +1,7 @@
+@use "src/styles/variables.scss" as var;
+
+@media (max-width: var.$maxLargeScreen) {
+  .pageFrame .main__scrolled {
+    height: calc(100% - 10rem);
+  }
+}

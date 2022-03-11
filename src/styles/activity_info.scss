@@ -1,0 +1,65 @@
+.icon-status {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  fill: var(--gray-300);
+}
+
+.status {
+  margin-top: 17px;
+  color: var(--primary-color) !important;
+}
+
+.statusInfo {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  em,
+  p {
+    font-style: normal;
+    text-align: left;
+    color: var(--gray-300);
+  }
+  em {
+    color: var(--primary-color);
+  }
+}
+
+@mixin resizeActivityPicture($size: 120px) {
+  .picture {
+    width: $size;
+    height: $size;
+  }
+}
+
+@mixin center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.day {
+  @include resizeActivityPicture(60px);
+}
+
+.week,
+.month {
+  @include resizeActivityPicture(44px);
+}
+
+.month {
+  @include resizeActivityPicture(40px);
+}
+
+.dots {
+  position: absolute;
+  right: 0.25rem;
+  top: 0.25rem;
+  border-radius: 50%;
+  cursor: pointer;
+  fill: var(--gray-300);
+  width: 24px;
+  height: 24px;
+  &:hover {
+    background-color: var(--gray-200);
+  }
+}

@@ -1,0 +1,143 @@
+@use "src/styles/variables.scss" as var;
+
+:host {
+  position: relative;
+  display: block;
+  background-color: var(--bg-color);
+  height: initial;
+}
+
+.legend {
+  margin-bottom: 1.5rem;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.modal-title {
+  margin-bottom: 0.5rem;
+}
+
+mat-form-field {
+  width: 100%;
+  // max-width: 350px;
+}
+
+@media (min-width: 600px) {
+  .search {
+    max-width: calc(100% - 32px);
+  }
+}
+
+.warningAdmin {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.users {
+  min-height: clamp(100px, calc(100vh - 541px - 20px - 48px), 200px);
+  margin-bottom: 1rem;
+
+  .tagName {
+    padding: 0.75rem 0 0.75rem 0.5rem;
+    fill: var(--gray-350);
+    border-bottom: 1px solid var(--gray-100);
+
+    p {
+      color: var(--gray-350);
+      margin: 0 1rem;
+      width: 100%;
+    }
+    svg-icon {
+      cursor: pointer;
+      border-radius: 50%;
+      &:hover {
+        background-color: var(--gray-250);
+      }
+    }
+  }
+}
+@media (max-width: 420px) {
+  .users {
+    min-height: clamp(90px, calc(100vh - 286px - 20px - 48px - 1rem), 400px);
+    &.space {
+      min-height: clamp(90px, calc(100vh - 540px - 20px - 48px), 400px);
+    }
+    &.creatorGroup {
+      min-height: clamp(90px, calc(100vh - 416px - 20px - 48px - 1rem), 400px);
+    }
+  }
+}
+@media (max-width: 370px) {
+  .users {
+    min-height: clamp(90px, calc(100vh - 306px - 20px - 48px - 1rem), 400px);
+    &.space {
+      min-height: clamp(90px, calc(100vh - 540px - 20px - 48px), 400px);
+    }
+    &.creatorGroup {
+      min-height: clamp(90px, calc(100vh - 436px - 20px - 48px - 1rem), 400px);
+    }
+  }
+}
+.action {
+  gap: 1rem;
+}
+.isRoute {
+  top: 20px;
+  left: 1rem;
+  justify-content: flex-start;
+
+  svg-icon {
+    height: 24px;
+    width: 24px;
+    fill: var(--dark);
+  }
+
+  & + .modal-title {
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+  }
+
+  & ~ .text {
+    padding-left: 1rem;
+
+    & + form {
+      padding: 0 1rem 1rem;
+
+      .mat-form-field {
+        max-width: 100%;
+      }
+
+      // .users {
+      //   margin-bottom: 0;
+      // }
+
+      .action {
+        justify-content: center;
+        width: 100%;
+        margin-top: 1rem;
+        button {
+          height: 48px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+em {
+  font-style: normal;
+}
+.alert-notif {
+  bottom: 0px;
+  left: 0;
+  font-size: 14px;
+  line-height: 20px;
+  height: 2rem;
+
+  svg-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+}

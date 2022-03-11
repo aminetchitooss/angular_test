@@ -1,0 +1,73 @@
+@use "src/styles/variables.scss" as var;
+
+.dash {
+  width: 100%;
+  margin: 0 auto 0;
+  // display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 2rem 1rem 1rem;
+  height: 100%;
+  &__result {
+    background-color: var(--bg-color);
+    min-height: calc(100vh - 75px - 2rem);
+    border-radius: 8px;
+    padding: 1.5rem 1rem 1rem;
+    position: relative;
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 30px;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.5rem;
+    }
+    .week-title {
+      font-size: 1.125rem;
+      line-height: 1.5rem;
+      margin-right: 1.25rem;
+      width: 100%;
+    }
+  }
+}
+.card-body {
+  gap: 1rem;
+}
+.frame-card {
+  width: 20%;
+}
+.card-sample {
+  padding: 1rem;
+  box-shadow: var(--shadow-under);
+  border-radius: 16px;
+  width: 100%;
+  .icon-pending {
+    width: 1.5em;
+    height: 1.5em;
+    min-width: 1.5em;
+    min-height: 1.5em;
+  }
+  .middle-sample {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+}
+
+@media (min-width: var.$minLargeScreen) {
+  .dash {
+    &__result {
+      padding: 2.5rem 2rem 1rem;
+    }
+  }
+}
+@media (max-height: var.$maxHeightSmallScreen) {
+  .dash {
+    &__result {
+      padding: 1.5rem 1rem 1rem;
+      min-height: calc(100vh - 64px - 2rem);
+    }
+  }
+}
+.text-pending {
+  display: block;
+}

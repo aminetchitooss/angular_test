@@ -1,0 +1,21 @@
+<div class="modal-close modalClose-icon flex">
+  <svg-icon src="notSet" matRipple (click)="close()"></svg-icon>
+</div>
+<p class="modal-title">Nouveautés !</p>
+
+<div class="mb-4 overlay modal-desc">
+  <p>
+    Version <em class="bold"> {{ PROJECT_VERSION }} :</em>
+  </p>
+  <ul class="mb-8">
+    <li *ngFor="let feat of featureList">{{ feat }}</li>
+  </ul>
+  <p>
+    Merci pour vos retours. Nous prenons et analysons régulièrement vos commentaires et suggestions d'amélioration. Continuez à nous remonter du feedback pour que myProject vous
+    soit encore plus utile dans votre quotidien !
+  </p>
+</div>
+
+<div class="flex end action g-4 w-100 wrap">
+  <button class="btn-primary small" matRipple (click)="close()">OK</button>
+</div>

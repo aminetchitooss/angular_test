@@ -1,0 +1,139 @@
+<ng-content select="[spacer]"></ng-content>
+<ng-content select="[day]"></ng-content>
+<ng-content select="[dots]"></ng-content>
+
+<ng-container *ngIf="statusData?.isMultiple == false; else multipleData">
+  <ng-container [ngTemplateOutlet]="fullDay" [ngTemplateOutletContext]="{ $implicit: slot, index: index, statusData: statusData }"> </ng-container>
+</ng-container>
+
+<ng-template #multipleData>
+  <ng-container [ngTemplateOutlet]="multiEntry" [ngTemplateOutletContext]="{ $implicit: statusData, slot: slot, index: index }"> </ng-container>
+</ng-template>
+
+<ng-template #fullDay let-slot let-index="index" let-statusData="statusData">
+  <ng-container *ngIf="userSlot(slot) as vSlot">
+    <ng-container *ngIf="vSlot.STATUS_TYPE | fullDayStatus as statusobj">
+      <ng-container *ngIf="statusType(statusData) as status">
+        <div class="center column tito" [ngClass]="{ 'display-full-noinfo': status.data?.icon == 'no-info' && display }">
+          <div class="choice center">
+            <p [ngClass]="statusobj.filled">{{ statusobj.text }}</p>
+          </div>
+          <div class="center sub-info icon-container">
+            <ng-container *ngIf="display; else showEditable">
+              <svg-icon
+                class="center icon-status icon-calendar icon-half mini displayed"
+                [src]="status.data?.icon"
+                [ngClass]="status.data ? status.data.class + (status.data.icon == 'no-info' ? ' min-noinfo' : '') : ''"
+              >
+              </svg-icon>
+              <p class="status-cal" [ngClass]="status.data ? status.data.classText + (status.data.icon == 'no-info' ? ' text-notdeclared' : '') : ''">
+                {{ status.data?.icon == "no-info" ? status.data?.label_long : status.data?.label }}
+              </p>
+            </ng-container>
+            <ng-template #showEditable>
+              <div class="center column icon-frame">
+                <svg-icon
+                  class="center icon-status icon-calendar selectable icon-half"
+                  matRipple
+                  (click)="toggleDaySlotStatus(vSlot, STATUS_TYPE.Presential, index)"
+                  [ngClass]="statusobj.colorIconOffice"
+                  src="declare"
+                >
+                </svg-icon>
+                <p class="status-cal full-day" [class]="statusobj.colorTextOffice">
+                  {{ STATUS_TYPE_LABEL.Presential }}
+                </p>
+              </div>
+
+              <div class="center column icon-frame">
+                <svg-icon
+                  class="center icon-status icon-calendar selectable icon-half"
+                  matRipple
+                  (click)="toggleDaySlotStatus(vSlot, STATUS_TYPE.Distance, index)"
+                  [ngClass]="statusobj.colorIconRemote"
+                  src="home"
+                >
+                </svg-icon>
+                <p class="status-cal full-day" [class]="statusobj.colorTextRemote">
+                  {{ STATUS_TYPE_LABEL.Distance }}
+                </p>
+              </div>
+
+              <div class="center column icon-frame">
+                <svg-icon
+                  class="center icon-status icon-calendar selectable icon-half"
+                  matRipple
+                  (click)="toggleDaySlotStatus(vSlot, STATUS_TYPE.Absent, index)"
+                  [ngClass]="statusobj.colorIconAbsent"
+                  src="notSet"
+                >
+                </svg-icon>
+                <p class="status-cal full-day" [class]="statusobj.colorTextAbsent">
+                  {{ STATUS_TYPE_LABEL.Absent }}
+                </p>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #multiEntry let-statusData let-slot="slot" let-index="index">
+  <ng-container *ngIf="statusType(statusData) as status">
+    <div class="center two-sides">
+      <div class="center column sub-info morningSide">
+        <div class="choice center slefStart">
+          <p class="highlighted">Matin</p>
+        </div>
+        <div class="center icon-container" [ngClass]="{ column: !display }">
+          <svg-icon
+            *ngIf="!display"
+            class="center icon-status icon-calendar icon-half"
+            [src]="status.dataMorning?.icon"
+            (click)="updateSemiDayStatus(slot, index)"
+            [ngClass]="status.dataMorning ? status.dataMorning.class : ''"
+          >
+          </svg-icon>
+          <svg-icon
+            *ngIf="display"
+            class="center icon-status icon-calendar icon-half mini displayed"
+            [src]="status.dataMorning?.icon"
+            [ngClass]="status.dataMorning ? status.dataMorning.class : ''"
+          >
+          </svg-icon>
+          <p class="status-cal" [ngClass]="status.dataMorning ? status.dataMorning.classText : ''">
+            {{ status.dataMorning?.label }}
+          </p>
+        </div>
+      </div>
+
+      <div class="center column sub-info">
+        <div class="choice center slefStart">
+          <p class="highlighted">Après-midi</p>
+        </div>
+        <div class="center icon-container" [ngClass]="{ column: !display }">
+          <svg-icon
+            *ngIf="!display"
+            class="center icon-status icon-calendar icon-half"
+            [src]="status.dataAfterNoon?.icon"
+            (click)="updateSemiDayStatus(slot, index)"
+            [ngClass]="status.dataAfterNoon ? status.dataAfterNoon.class : ''"
+          >
+          </svg-icon>
+          <svg-icon
+            *ngIf="display"
+            class="center icon-status icon-calendar icon-half mini displayed"
+            [src]="status.dataAfterNoon?.icon"
+            [ngClass]="status.dataAfterNoon ? status.dataAfterNoon.class : ''"
+          >
+          </svg-icon>
+          <p class="status-cal" [ngClass]="status.dataAfterNoon ? status.dataAfterNoon.classText : ''">
+            {{ status.dataAfterNoon?.label }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

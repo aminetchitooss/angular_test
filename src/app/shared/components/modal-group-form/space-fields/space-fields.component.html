@@ -1,0 +1,40 @@
+<ng-container *ngIf="groupForm" [formGroup]="groupForm">
+  <mat-label class="field-title">Nombre de places assises</mat-label>
+  <mat-form-field appearance="outline">
+    <input
+      type="number"
+      min="0"
+      max="100"
+      inputmode="numeric"
+      pattern="[0-9]*"
+      placeholder="Min 1 / Max : 100"
+      matInput
+      formControlName="slots"
+      autocomplete="off"
+      [autofocus]="false"
+    />
+    <mat-error *ngIf="groupForm?.controls?.slots?.hasError('required')"> Champ <strong>obligatoire</strong> </mat-error>
+    <mat-error *ngIf="groupForm?.controls?.slots?.hasError('min')"> Nombre de places doit être <strong>un minimum de 1 et un maximum de100 </strong> </mat-error>
+  </mat-form-field>
+  <div class="jauges">
+    <mat-label class="field-title">Taux d'occupation à appliquer à l'Espace/Zone</mat-label>
+    <div class="flex between">
+      <div class="field">
+        <mat-form-field class="peopleMax" appearance="outline">
+          <input type="number" min="0" inputmode="numeric" pattern="[0-9]*" matInput formControlName="peopleMax" autocomplete="off" [autofocus]="false" />
+          <mat-error *ngIf="groupForm?.controls?.peopleMax?.hasError('required')"> Champ <strong>obligatoire</strong> </mat-error>
+          <mat-error *ngIf="groupForm?.controls?.peopleMax?.hasError('min')"> Champ doit être <strong>positif</strong> </mat-error>
+        </mat-form-field>
+        <p class="tag">personne{{ groupForm?.controls?.peopleMax?.value > 1 ? "s" : "" }}</p>
+      </div>
+      <div class="field">
+        <mat-form-field appearance="outline">
+          <input type="number" min="0" inputmode="numeric" pattern="[0-9]*" matInput formControlName="occupationMax" autocomplete="off" [autofocus]="false" />
+          <mat-error *ngIf="groupForm?.controls?.occupationMax?.hasError('required')"> Champ <strong>obligatoire</strong> </mat-error>
+          <mat-error *ngIf="groupForm?.controls?.occupationMax?.hasError('min')"> Champ doit être <strong>positif </strong> </mat-error>
+        </mat-form-field>
+        <p class="tag">%</p>
+      </div>
+    </div>
+  </div>
+</ng-container>

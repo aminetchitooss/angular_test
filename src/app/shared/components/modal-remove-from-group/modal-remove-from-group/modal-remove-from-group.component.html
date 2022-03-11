@@ -1,0 +1,14 @@
+<div class="modal-close modalClose-icon flex">
+  <svg-icon src="notSet" matRipple (click)="close()"></svg-icon>
+</div>
+<p class="modal-title">Voulez-vous vraiment quitter {{ data.isGroup ? "ce Groupe/Equipe" : "cet Espace/Zone" }} ?</p>
+
+<div class="flex end g-4">
+  <button class="btn-primary-hollow small" matRipple (click)="close()">Non</button>
+  <div class="wrapper" (click)="leave(save)" #save>
+    <button class="btn-danger-hollow small" matRipple>
+      <em>Oui</em>
+      <div class="spinner danger"></div>
+    </button>
+  </div>
+</div>

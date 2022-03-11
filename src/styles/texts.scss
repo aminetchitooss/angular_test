@@ -1,0 +1,18 @@
+$colors: "primary", "accent", "success", "warning", "danger";
+
+@each $color in $colors {
+  .text-#{$color} {
+    color: var(--#{$color}-color) !important;
+    font-weight: 500;
+  }
+}
+.text-gray {
+  color: var(--gray-350) !important;
+  font-weight: 500;
+}
+.light {
+  font-weight: lighter;
+}
+.bold {
+  font-weight: bold;
+}

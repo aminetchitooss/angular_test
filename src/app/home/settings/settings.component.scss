@@ -1,0 +1,75 @@
+@use "src/styles/variables.scss" as var;
+
+.settings {
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+  margin: 1rem auto;
+  padding: 2rem 3rem 1rem;
+  border-radius: 8px;
+  background-color: var(--bg-nav-color);
+  h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 1.7rem;
+  }
+  mat-label {
+    display: block;
+    font-weight: 600;
+    bottom: 6px;
+    position: relative;
+  }
+  mat-form-field {
+    min-width: 320px;
+    cursor: not-allowed;
+  }
+  .mat-select-value-text span {
+    color: var(--text-disabled-color);
+  }
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: var(--bg-disabled-color);
+  }
+  .actions {
+    position: relative;
+    &.cta {
+      top: 0.5rem;
+    }
+  }
+  // .settingTab {
+  //   height: 100%;
+  //   .mat-tab-body-wrapper,
+  //   mat-tab-body {
+  //     height: 100%;
+  //   }
+  // }
+  .list-group {
+    height: calc(100vh - 36px - 50px - 181px - 5rem);
+    margin-top: 2rem;
+    &.isNotManager {
+      height: calc(100vh - 36px - 20px - 181px - 5rem);
+    }
+  }
+  .mat-tab-label {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: var.$maxSmallScreen) {
+  .settingReturn {
+    margin-bottom: 0;
+  }
+  .settings {
+    width: calc(100% - 1rem);
+    height: calc(100% - 4rem);
+    margin: 1rem auto 0;
+    padding: 1rem;
+    h2 {
+      display: none;
+    }
+    .list-group {
+      height: calc(100% - 36px - 50px - 50px);
+      &.isNotManager {
+        height: calc(100% - 36px - 40px);
+      }
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "features": [
+    "Vous pouvez désormais nommer d'autres administrateurs pour vos Espaces et Groupes.  Cela vous permet de déléguer ou de partager l'administration",
+    "Les Groupes sont désormais disponibles pour tous les membres du Groupe depuis le menu « Visualiser les présences »",
+    "Ajout d'un pop-up à chaque nouvelle version décrivant les améliorations de myProject.",
+    "Cette mise à jour inclut des correctifs et des améliorations de performances.  "
+  ],
+  "SelAsMemberWithMember": [
+    [
+      {
+        "ID": 237,
+        "TYP": 1,
+        "NAME": "Guardians of the galaxy",
+        "NBSEAT": null,
+        "NBMAX": null,
+        "PERCENTMAX": 0,
+        "ADMIN": true,
+        "MEMBER_LIST": [
+          { "ID": 564, "FIRSTNAME": "Gamora", "LASTNAME": "SMITH", "VISA": "GASI_CB", "UPN": "thor.odinson.@avengers.com", "ADMIN": false },
+          { "ID": 565, "FIRSTNAME": "Tony", "LASTNAME": "Stark", "VISA": "AMTA_CB", "UPN": "iron.man.@avengers.com", "ADMIN": true }
+        ]
+      },
+      {
+        "ID": 223,
+        "TYP": 1,
+        "NAME": "Groupe FireFox _BQ",
+        "NBSEAT": null,
+        "NBMAX": null,
+        "PERCENTMAX": 0,
+        "ADMIN": false,
+        "MEMBER_LIST": [
+          { "ID": 520, "FIRSTNAME": "Loki", "LASTNAME": "sneaky", "VISA": "SBGS_CB", "UPN": "loki@avengers.comm", "ADMIN": false },
+          { "ID": 519, "FIRSTNAME": "john", "LASTNAME": "wayne", "VISA": "CNPT_CB", "UPN": "john.wayne.digilityx@avengers.comm", "ADMIN": false },
+          { "ID": 563, "FIRSTNAME": "Tony", "LASTNAME": "Stark", "VISA": "AMTA_CB", "UPN": "iron.man.@avengers.com", "ADMIN": false },
+          { "ID": 518, "FIRSTNAME": "hulk", "LASTNAME": "smash", "VISA": "MDYN_CB", "UPN": "hulk.smash.@avengers.com", "ADMIN": true }
+        ]
+      },
+      {
+        "ID": 239,
+        "TYP": 2,
+        "NAME": "Digital Factory",
+        "NBSEAT": 100,
+        "NBMAX": 100,
+        "PERCENTMAX": 100,
+        "ADMIN": false,
+        "MEMBER_LIST": [
+          { "ID": 577, "FIRSTNAME": "Loki", "LASTNAME": "sneaky", "VISA": "SBGS_CB", "UPN": "loki@avengers.comm", "ADMIN": false },
+          { "ID": 578, "FIRSTNAME": "thor", "LASTNAME": "Odinson", "VISA": "ELM_CB", "UPN": "hulk@avengers.comm", "ADMIN": false },
+          { "ID": 580, "FIRSTNAME": "Thanos", "LASTNAME": "Tyrant", "VISA": "RMRD_CB", "UPN": "hawkeye@avengers.comm", "ADMIN": false },
+          { "ID": 581, "FIRSTNAME": "black", "LASTNAME": "Widow", "VISA": "BAQE_CB", "UPN": "gamora.@avengers.com", "ADMIN": true },
+          { "ID": 579, "FIRSTNAME": "Tony", "LASTNAME": "Stark", "VISA": "AMTA_CB", "UPN": "iron.man.@avengers.com", "ADMIN": false }
+        ]
+      }
+    ]
+  ],
+  "user": [
+    {
+      "ID": 5,
+      "UPN": "iron.man@avengers.com",
+      "FIRSTNAME": "Iron",
+      "LASTNAME": "Man",
+      "VISA": "test",
+      "INTERN": false,
+      "ISMANAGER": true,
+      "IDLASTGROUPE": 144,
+      "SITE_NAME": "Avengers tower",
+      "PHOTO": " ",
+      "LASTVERSIONREAD": "1.4"
+    }
+  ],
+  "SelGaugeAndUserPeriod": [
+    {
+      "currentDate": "2022-03-11 00:00:00",
+      "searchDateDay": "2022-03-07 00:00:00",
+      "searchDateWeek": ["2022-03-07 00:00:00", "2022-03-08 00:00:00", "2022-03-09 00:00:00", "2022-03-10 00:00:00", "2022-03-11 00:00:00"],
+      "day": null,
+      "week": [
+        {
+          "userInfo": {
+            "FIRSTNAME": "Tony",
+            "LASTNAME": "Stark",
+            "UPN": "iron.man.@avengers.com",
+            "PHOTO": "/api/User/GetPhotoByIdBin?idBin=79774&upn=iron.man%40avengers.com&base64=true"
+          },
+          "userSlots": [
+            { "DATE": "2022-03-07 00:00:00", "STATUS_TYPE": null, "STATUS_TYPE_MORNING": null, "STATUS_TYPE_AFTER_NOON": null, "HOLIDAY": false },
+            { "DATE": "2022-03-08 00:00:00", "STATUS_TYPE": null, "STATUS_TYPE_MORNING": null, "STATUS_TYPE_AFTER_NOON": null, "HOLIDAY": false },
+            { "DATE": "2022-03-09 00:00:00", "STATUS_TYPE": null, "STATUS_TYPE_MORNING": null, "STATUS_TYPE_AFTER_NOON": null, "HOLIDAY": false },
+            { "DATE": "2022-03-10 00:00:00", "STATUS_TYPE": null, "STATUS_TYPE_MORNING": null, "STATUS_TYPE_AFTER_NOON": null, "HOLIDAY": false },
+            { "DATE": "2022-03-11 00:00:00", "STATUS_TYPE": null, "STATUS_TYPE_MORNING": null, "STATUS_TYPE_AFTER_NOON": null, "HOLIDAY": false }
+          ]
+        }
+      ],
+      "month": null,
+      "gauge": [
+        {
+          "groupeInfo": { "NAME": "Digital Avengers" },
+          "groupeGauges": [
+            { "DATE": "2022-03-07 00:00:00", "GAUGE": 12, "HOLIDAY": false },
+            { "DATE": "2022-03-08 00:00:00", "GAUGE": 33, "HOLIDAY": false },
+            { "DATE": "2022-03-09 00:00:00", "GAUGE": 50, "HOLIDAY": false },
+            { "DATE": "2022-03-10 00:00:00", "GAUGE": 20, "HOLIDAY": false },
+            { "DATE": "2022-03-11 00:00:00", "GAUGE": 15, "HOLIDAY": false }
+          ]
+        },
+        {
+          "groupeInfo": { "NAME": "Assemble" },
+          "groupeGauges": [
+            { "DATE": "2022-03-07 00:00:00", "GAUGE": 27, "HOLIDAY": false },
+            { "DATE": "2022-03-08 00:00:00", "GAUGE": 20, "HOLIDAY": false },
+            { "DATE": "2022-03-09 00:00:00", "GAUGE": 37, "HOLIDAY": false },
+            { "DATE": "2022-03-10 00:00:00", "GAUGE": 30, "HOLIDAY": false },
+            { "DATE": "2022-03-11 00:00:00", "GAUGE": 90, "HOLIDAY": false }
+          ]
+        }
+      ]
+    }
+  ],
+  "detail": [
+    {
+      "ID": 237,
+      "TYP": 1,
+      "NAME": "Guardians of the galaxy",
+      "NBSEAT": null,
+      "NBMAX": null,
+      "PERCENTMAX": 0,
+      "ADMIN": true,
+      "MEMBER_LIST": [
+        { "ID": 564, "FIRSTNAME": "Thor", "LASTNAME": "Odinson", "VISA": "GASI_CB", "UPN": "thor.odinson.@avengers.com", "ADMIN": false },
+        { "ID": 565, "FIRSTNAME": "Tony", "LASTNAME": "Stark", "VISA": "AMTA_CB", "UPN": "iron.man.@avengers.com", "ADMIN": true }
+      ]
+    }
+  ],
+  "mobileGroupById": [
+    {
+      "currentDate": "2022-03-11 00:00:00",
+      "searchDateDay": "2022-02-11 00:00:00",
+      "searchDateWeek": null,
+      "day": [
+        {
+          "userInfo": {
+            "FIRSTNAME": "Loki",
+            "LASTNAME": "Odinson",
+            "UPN": "loki.Odinson@avengers.com",
+            "PHOTO": "/api/User/GetPhotoByIdBin?idBin=11111"
+          },
+          "userSlots": [{ "DATE": "2022-02-11 00:00:00", "STATUS_TYPE": 2, "STATUS_TYPE_MORNING": 1, "STATUS_TYPE_AFTER_NOON": 1, "HOLIDAY": false }]
+        },
+        {
+          "userInfo": {
+            "FIRSTNAME": "hulk",
+            "LASTNAME": "Smash",
+            "UPN": "hulk.Smash@avengers.com",
+            "PHOTO": "/api/User/GetPhotoByIdBin?idBin=33333"
+          },
+          "userSlots": [{ "DATE": "2022-02-11 00:00:00", "STATUS_TYPE": 3, "STATUS_TYPE_MORNING": 1, "STATUS_TYPE_AFTER_NOON": 1, "HOLIDAY": false }]
+        },
+        {
+          "userInfo": {
+            "FIRSTNAME": "Thanos",
+            "LASTNAME": "Aras",
+            "UPN": "Thanos.Aras.digilityx@avengers.com",
+            "PHOTO": "/api/User/GetPhotoByIdBin?idBin=22222"
+          },
+          "userSlots": [{ "DATE": "2022-02-11 00:00:00", "STATUS_TYPE": 1, "STATUS_TYPE_MORNING": 2, "STATUS_TYPE_AFTER_NOON": 3, "HOLIDAY": false }]
+        },
+        {
+          "userInfo": {
+            "FIRSTNAME": "Tony",
+            "LASTNAME": "Stark",
+            "UPN": "Tony.Stark@avengers.com",
+            "PHOTO": "/api/User/GetPhotoByIdBin?idBin=44444"
+          },
+          "userSlots": [{ "DATE": "2022-02-11 00:00:00", "STATUS_TYPE": null, "STATUS_TYPE_MORNING": null, "STATUS_TYPE_AFTER_NOON": null, "HOLIDAY": false }]
+        }
+      ],
+      "week": null,
+      "groupMonth": null
+    }
+  ]
+}

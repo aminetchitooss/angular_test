@@ -1,0 +1,36 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": ["/favicon.ico", "/manifest.webmanifest", "index.html", "/*.css", "/*.png", "/*.config", "/*.txt", "/*.js"],
+        "urls": ["https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap", "https://fonts.gstatic.com/**"]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/assets/**", "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"]
+      }
+    },
+    {
+      "name": "images",
+      "installMode": "prefetch",
+      "resources": {
+        "urls": [
+          "https://digitalfactory-api.avengers.com/myProject/tst/api/User/GetPhotoByIdBin/**",
+          "https://digitalfactory-api.avengers.com/myProject/ppr/api/User/GetPhotoByIdBin/**",
+          "https://digitalfactory-api.avengers.com/myProject/api/User/GetPhotoByIdBin/**"
+        ]
+      },
+      "cacheQueryOptions": {
+        "ignoreSearch": true
+      }
+    }
+  ]
+}

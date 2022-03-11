@@ -1,0 +1,113 @@
+@use "src/styles/variables.scss" as var;
+
+$mb: 0.5rem;
+
+.list-group {
+  height: calc(100% - 82px - 50px - calc(2 * #{$mb}));
+  position: relative;
+  &.isNotManager {
+    height: calc(100% - 72px - calc(2 * #{$mb}));
+  }
+}
+
+.loader-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.group-item {
+  width: calc(100% - 2.5rem);
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  box-shadow: var(--shadow-under);
+  border-radius: 8px;
+  padding: 1rem;
+  // box-shadow: 0px 1px 6px 0px rgba(33, 33, 33, 0.1);
+  // border-radius: 6px;
+
+  &:nth-child(1) {
+    margin-top: 0.8rem;
+  }
+
+  .title-group {
+    font-weight: bold;
+  }
+
+  .detail-info {
+    margin-top: 10px;
+    .light {
+      font-size: 14px;
+      line-height: 18px;
+    }
+    .xsmall {
+      border-radius: 50%;
+      border: 2px solid transparent;
+      &.isAdmin {
+        border-color: var(--primary-color);
+      }
+    }
+  }
+
+  &__consult {
+    // height: 40px;
+    text-decoration: none;
+    color: var(--text-color);
+    padding-left: 0.4rem;
+  }
+
+  &__action {
+    svg-icon {
+      height: 30px;
+      width: 30px;
+      padding: 0.3rem;
+      fill: white;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+      cursor: pointer;
+
+      &.edit {
+        padding: 7px;
+      }
+
+      $colorHover: var(--border-dark);
+      &:hover {
+        background-color: $colorHover;
+        &:not(.edit) {
+          fill: $colorHover !important;
+        }
+      }
+    }
+    .actions {
+      position: relative;
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      fill: var(--icon-fill);
+
+      &:hover,
+      &.loading {
+        background-color: var(--gray-100);
+      }
+
+      &.loading {
+        cursor: not-allowed;
+        button {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
+
+.group-action button {
+  position: absolute;
+  bottom: $mb;
+}
+@media (max-height: var.$maxHeightSmallScreen) {
+  .group-item {
+    width: calc(100% - 2rem);
+  }
+}

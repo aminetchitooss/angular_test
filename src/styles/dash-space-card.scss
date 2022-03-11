@@ -1,0 +1,281 @@
+@use "src/styles/variables.scss" as var;
+
+@mixin reverseIcons {
+  fill: var(--gray-250);
+
+  &.icon-primary {
+    fill: var(--primary-color) !important;
+    background-color: transparent !important;
+  }
+  &.icon-danger {
+    fill: var(--danger-color) !important;
+    background-color: transparent !important;
+  }
+  &.icon-none-empty {
+    background-color: var(--gray-250);
+    fill: white;
+  }
+  &.icon-gray,
+  &.icon-none {
+    background-color: var(--gray-350) !important;
+  }
+  &.icon-gray {
+    svg {
+      height: 70% !important;
+    }
+  }
+  &.icon-none,
+  &.icon-none-empty {
+    svg {
+      height: 60% !important;
+    }
+  }
+  svg {
+    width: inherit !important;
+    height: inherit !important;
+  }
+}
+.count .center.icon-status.no-info {
+  border: 1px solid var(--gray-250);
+  svg {
+    min-height: 17px !important;
+    min-width: 17px !important;
+  }
+}
+.icon-container .icon-status.icon-calendar.icon-half.mini.displayed.min-noinfo {
+  &:not(.icon-primary) {
+    border: 1px solid var(--gray-250);
+    margin-top: 0.5rem;
+    svg {
+      min-height: 20px !important;
+      min-width: 20px !important;
+    }
+  }
+}
+.space-card {
+  background-color: var(--bg-nav-color);
+  position: relative;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-under);
+
+  .dots {
+    position: absolute;
+    top: 12px;
+    right: 6px;
+  }
+
+  .space-info {
+    text-align: center;
+    font-size: 0.875rem;
+    margin-bottom: 20px;
+    .center {
+      position: relative;
+      p {
+        position: absolute;
+        bottom: 4px;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+    .space-info-name {
+      margin-top: 0.5rem;
+    }
+  }
+}
+.choice {
+  text-align: center;
+  margin-bottom: 12px;
+  &.slefStart {
+    align-self: flex-start;
+  }
+  p {
+    font-size: 0.75rem;
+    line-height: 18px;
+    white-space: nowrap;
+    &:not(.highlighted) {
+      color: var(--gray-300);
+    }
+  }
+}
+.sub-info {
+  $size: 30px;
+  .icon-calendar {
+    width: $size;
+    height: $size;
+    fill: var(--gray-230);
+
+    &:not(.icon-pending) {
+      border: 1px solid var(--gray-230);
+    }
+    $smallSize: 22px;
+
+    &.mini {
+      width: $smallSize;
+      height: $smallSize;
+      margin-right: 0.5rem;
+      margin-top: 0.5rem;
+    }
+  }
+  .icon-frame:not(:last-child) {
+    margin-right: 0.8rem;
+  }
+  &.morningSide {
+    margin-right: 1.5rem;
+  }
+}
+.display-reverse-icon {
+  .sub-info {
+    .icon-calendar {
+      $smallSize: 14px;
+
+      &.mini {
+        width: $smallSize;
+        height: $smallSize;
+        margin-right: 0.25rem;
+
+        &.displayed {
+          @include reverseIcons();
+        }
+      }
+    }
+  }
+  &:not(.cal) {
+    .sub-info {
+      .icon-calendar {
+        &.mini {
+          &.displayed {
+            & + p.status-cal {
+              font-size: 0.875rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.cal {
+    .choice,
+    .two-sides {
+      text-align: center;
+      justify-content: flex-start;
+    }
+  }
+  &.cal,
+  &.cal .sub-info {
+    justify-content: flex-start;
+    // align-items: flex-start;
+  }
+}
+.mini.displayed.icon-empty {
+  svg {
+    width: inherit !important;
+    height: inherit !important;
+  }
+}
+
+.display-reverse-icon.cal,
+.second-elm {
+  min-width: 119px;
+  text-align: left;
+}
+.group-search {
+  .count {
+    svg-icon {
+      @include reverseIcons();
+    }
+  }
+}
+.month-activity-info-element {
+  .two-sides,
+  .icon-container {
+    svg-icon {
+      width: 18px !important;
+      height: 18px !important;
+      @include reverseIcons();
+    }
+  }
+}
+.status-cal {
+  display: block;
+  font-size: 0.75rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: var(--gray-230);
+  &:not(.full-day) {
+    color: var(--gray-300);
+  }
+
+  em {
+    background-color: transparent !important;
+    display: inline;
+    font-style: normal;
+    &.bold {
+      font-weight: 600;
+    }
+    &.icon-primary {
+      color: var(--primary-color);
+    }
+    &.icon-danger {
+      color: var(--danger-color);
+    }
+  }
+}
+
+.dash-week {
+  margin-top: 2rem;
+  margin-bottom: 20px;
+  &.semaine {
+    margin-top: 1.5rem;
+    margin-bottom: calc(1rem - 6px);
+  }
+  p {
+    text-align: center;
+    line-height: 20px;
+    position: relative;
+    &.current {
+      font-weight: 500;
+      &::after {
+        content: "";
+        position: absolute;
+        height: 3px;
+        border-radius: 40px;
+        width: 2rem;
+        left: 50%;
+        bottom: -8px;
+        transform: translate(-50%, -50%);
+        background-color: var(--primary-color);
+      }
+    }
+    &:not(.current) {
+      color: var(--gray-230);
+    }
+  }
+}
+
+.emptyDash {
+  text-align: center;
+  max-width: 505px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  h2 {
+    margin: 0;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 24px;
+  }
+  p {
+    line-height: 22px;
+  }
+}
+
+.weekWidth {
+  gap: 20px;
+  &-item {
+    width: calc(20% - 1rem);
+  }
+}

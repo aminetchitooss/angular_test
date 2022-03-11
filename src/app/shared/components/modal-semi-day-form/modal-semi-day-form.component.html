@@ -1,0 +1,46 @@
+<div class="modalClose-icon flex end">
+    <svg-icon src="notSet" matRipple (click)="close()"></svg-icon>
+</div>
+
+<div class="content">
+    <p class="modal-title">{{TITLE}} ma présence par demi-journée le {{date}}</p>
+
+    <div class="flex wrap choices">
+        <div class="day-status">
+            <label id="morning-radio-group-label">Matin</label>
+            <mat-radio-group aria-labelledby="morning-radio-group-label" [(ngModel)]="morning"
+                (change)="updateFullday()">
+                <mat-radio-button class="radio-button" *ngFor="let status of Status_List" [value]="status.Id">
+                    {{status.name}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="day-status">
+            <label id="afternoon-radio-group-label">Après-midi</label>
+            <mat-radio-group aria-labelledby="afternoon-radio-group-label" [(ngModel)]="afternoon"
+                (change)="updateFullday()">
+                <mat-radio-button class="radio-button" *ngFor="let status of Status_List" [value]="status.Id">
+                    {{status.name}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="day-status" *ngIf="isMultiple">
+            <label id="afternoon-radio-group-label">Journée</label>
+            <mat-radio-group aria-labelledby="afternoon-radio-group-label" (change)="updateSemiDays()"
+                [(ngModel)]="fullDay">
+                <mat-radio-button class="radio-button" *ngFor="let status of Status_List" [value]="status.Id">
+                    {{status.name}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+</div>
+
+<div class="flex end action" (click)='save(update)' #update>
+    <button class="btnEnabledWithCondition small modal-flat" [ngClass]="{ 'enabled':hasChanged()}" matRipple>
+        <em>Confirmer</em>
+        <div class="spinner white"></div>
+    </button>
+</div>

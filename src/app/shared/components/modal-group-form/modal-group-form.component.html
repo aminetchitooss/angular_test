@@ -1,0 +1,83 @@
+<ng-container *ngIf="form$ | async"></ng-container>
+<ng-container *ngIf="currentUser$ | async"></ng-container>
+
+<div class="modal-close modalClose-icon flex" [ngClass]="{ isRoute: isRoute }">
+  <svg-icon [src]="isRoute ? 'previous' : 'notSet'" matRipple (click)="close()"></svg-icon>
+</div>
+
+<p class="modal-title text">{{ TITLE }}</p>
+<p class="legend text">
+  {{
+    isGroup
+      ? "Les Groupes peuvent être utilisés dans le cadre de projets, communautés. Ils représentent un ensemble de personnes ne travaillant pas nécessairement sur le même lieu physique, ou ne faisant pas partie de la même direction."
+      : "Un Espace/Zone doit être utilisé afin de gérer les jauges d'occupation d'un lieu physique, un open space/espace collaboratif, dans lequel se trouve un nombre de places assises défini. Cela vous permettra de visualiser le taux d'occupation de votre Espace/Zone depuis la page d'accueil."
+  }}
+</p>
+
+<form [formGroup]="groupForm" [ngClass]="{ grayField: isRoute }">
+  <div class="search">
+    <mat-label class="field-title">{{ LABEL }}</mat-label>
+    <mat-form-field appearance="outline">
+      <input type="text" maxlength="50" placeholder="{{ LABEL_PLACEHOLDER }}" matInput formControlName="name" autocomplete="off" [autofocus]="false" />
+      <mat-error *ngIf="groupForm?.controls?.name?.hasError('required')"> Champ <strong>obligatoire</strong> </mat-error>
+      <mat-error *ngIf="groupForm?.controls?.name?.hasError('minlength')"> {{ LABEL }} doit avoir <strong>un minimum de 2 caractères</strong> </mat-error>
+    </mat-form-field>
+
+    <space-fields class="w-100" *ngIf="!isGroup" [groupForm]="groupForm" [isFormDisabled]="isFormDisabled"></space-fields>
+
+    <div class="flex between">
+      <mat-label class="field-title">{{ !isFormDisabled ? "Ajouter un collaborateur" : "Collaborateurs" }}</mat-label>
+      <p class="field-title">{{ userList.length }} personne{{ userList.length > 1 ? "s" : "" }}</p>
+    </div>
+
+    <p class="text-danger warningAdmin" *ngIf="!hasAdmin()">
+      Vous êtes actuellement le seul Administrateur de {{ isGroup | groupLabel: false:true }}. Veuillez nommer au moins un autre administrateur avant de quitter
+      {{ isGroup | groupLabel: false:true }}.
+    </p>
+
+    <div class="users" [ngClass]="{ space: !isGroup, creatorGroup: isGroup && isCreateMode }">
+      <div class="flex tagName" *ngFor="let user of userList | sortUsers; trackBy: trackByUser; let index = index">
+        <picture class="small" [profile]="user.value | photoByUpn"></picture>
+        <p>{{ user.label.split(" (")[0] }} {{ user.isAdmin ? " (Admin)" : "" }}</p>
+        <svg-icon *ngIf="isCreateMode || isAdmin" [matMenuTriggerFor]="adminMenu" [matMenuTriggerData]="{ userData: user, index: index }" matRipple src="dots"></svg-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex alert-notif" *ngIf="userList.length > 0 && (isAdmin || isCreateMode)">
+    <svg-icon class="icon-primary-fill" src="info"></svg-icon>
+    <p class="mb-2">Les personnes ajoutées seront notifiées sur Teams.</p>
+  </div>
+
+  <div class="flex end action wrap" (click)="save(create)" #create>
+    <button *ngIf="isAdmin" class="btn-danger-hollow center small" matRipple (click)="deleteSpaceOrGroup()">Supprimer {{ isGroup | groupLabel: false }}</button>
+    <ng-container *ngIf="!isCreateMode && !isAdmin">
+      <button *ngIf="isGroup" class="btn-danger-hollow center small" matRipple (click)="leaveGroupe()">Quitter le Groupe/Equipe</button>
+      <!-- <button class="btn-primary center small" matRipple (click)="close()">Fermer</button> -->
+    </ng-container>
+    <button *ngIf="isCreateMode || isAdmin" class="btnEnabledWithCondition small" [ngClass]="{ enabled: !isFormInvalid() }" matRipple>
+      <em>{{ CREATE_LABEL }}</em>
+      <div class="spinner white"></div>
+    </button>
+  </div>
+</form>
+
+<mat-menu #adminMenu="matMenu" class="declare-semi-day">
+  <ng-template matMenuContent let-user="userData" let-current="index">
+    <ng-container *ngIf="nameSearch(user) as vUser">
+      <ng-container>
+        <button *ngIf="vUser.isAdmin" mat-menu-item aria-label="remove user" class="menuLink" matRipple (click)="removeAdminPrivileges(current)">
+          <span> Retirer administrateur </span>
+        </button>
+        <button *ngIf="!vUser.isAdmin" mat-menu-item aria-label="remove user" class="menuLink" matRipple (click)="addAdminPrivileges(current)">
+          <span> Nommer administrateur </span>
+        </button>
+      </ng-container>
+      <button mat-menu-item aria-label="remove user" class="menuLink red" matRipple (click)="removeFromUserList(current)">
+        <span class="text-danger">
+          {{ currentUser?.UPN == vUser.value ? "Quitter " + (isGroup ? "le" : "l'") : "Supprimer " + (isGroup ? "du" : "de l'") }} {{ isGroup | groupLabel: false:false:true }}
+        </span>
+      </button>
+    </ng-container>
+  </ng-template>
+</mat-menu>

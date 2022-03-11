@@ -1,0 +1,50 @@
+@use "src/styles/variables.scss" as var;
+
+.policyRoute {
+  &.defaultRoute {
+    .list_routes {
+      display: block;
+    }
+  }
+  .list_routes {
+    display: none;
+    padding-left: 0rem;
+    margin: 0;
+    li {
+      margin-bottom: 0.5rem;
+      max-width: max-content;
+      border-radius: 6px;
+      cursor: pointer;
+      a {
+        padding: 0.25rem 0rem;
+        font-weight: 300;
+        line-height: 1.5rem;
+      }
+      svg-icon {
+        width: 7.4px;
+        height: 12px;
+        margin-left: 0.5rem;
+      }
+      &:hover {
+        a {
+          color: var(--primary-color);
+        }
+        svg-icon {
+          fill: var(--primary-color);
+        }
+      }
+    }
+  }
+  a {
+    color: var(--text-color);
+    max-width: max-content;
+    text-decoration: none;
+  }
+}
+@media (max-width: var.$maxLargeScreen) {
+  .policyRoute {
+    .main__return {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

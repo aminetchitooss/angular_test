@@ -1,0 +1,31 @@
+.modal-title {
+  margin-top: 1rem;
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 24px;
+}
+.day-status {
+  margin-bottom: 2rem;
+  width: 160px;
+  &:not(:last-child) {
+    margin-right: clamp(3rem, 50%, 80px);
+  }
+  label {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 24px;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .radio-button {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 300;
+    height: 1.5rem;
+    width: max-content;
+  }
+}
+button {
+  position: relative;
+}

@@ -1,0 +1,20 @@
+<div class="modal-close modalClose-icon flex">
+  <svg-icon src="notSet" matRipple (click)="close()"></svg-icon>
+</div>
+<p class="modal-title">{{ TITLE }} </p>
+
+<p class="modal-desc">
+  {{ CONFIRMATION_TEXT }}<em class="title">〝{{ groupDialogData.data?.NAME }}〞</em>?
+</p>
+
+<p class="modal-desc">{{ CONFIRMATION_TEXT_BIS }} </p>
+
+<div class="flex end setting-actions">
+  <button class="btn-primary-hollow small" matRipple (click)="close()">Non</button>
+  <div class="wrapper" (click)="deleteItem(save)" #save>
+    <button class="btn-danger-hollow small" matRipple>
+      <em>Oui</em>
+      <div class="spinner danger"></div>
+    </button>
+  </div>
+</div>

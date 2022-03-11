@@ -1,0 +1,44 @@
+<ng-container *ngIf="_dataService.isMobile$ | async as mobileLayout; else MidScreenOrHigher">
+  <a [routerLink]="['/home/dashboard']" class="return back settingReturn returnBtnMobile" matRipple>
+    <svg-icon src="previous"></svg-icon>
+    Paramètres
+  </a>
+  <div class="h-100 w-100 center column">
+    <p>This section not included is not in mobile</p>
+  </div>
+</ng-container>
+<ng-template #MidScreenOrHigher>
+  <a [routerLink]="['/home/dashboard']" class="return back settingReturn" matRipple>
+    <svg-icon src="previous"></svg-icon>
+    Paramètres
+  </a>
+  <div class="settings" *ngIf="currentUser$ | async as currentUser">
+    <h2>Paramètres</h2>
+    <div class="flex between wrap">
+      <div class="field autosearch plain">
+        <mat-label>Mon site</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-select [(ngModel)]="currentSiteId" [disabled]="isSiteDisabled" (selectionChange)="changeSite($event)">
+            <mat-option [value]="site.id" *ngFor="let site of siteList">{{ site.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-tab-group class="settingTab" [attr.mat-align-tabs]="'left'" (selectedIndexChange)="changeTab($event)">
+      <mat-tab label="Mes Groupes/Equipes">
+        <div class="flex end actions cta">
+          <button class="btn-primary-hollow small uncurved" [@YToTop] matRipple (click)="openCreateGroupModal()">Créer un Groupe/Equipe</button>
+        </div>
+        <space-or-group-list [isLoaded]="isLoadedGroup" [elementList]="groupList" [isGroup]="true"> </space-or-group-list>
+      </mat-tab>
+
+      <mat-tab label="Mes Espaces/Zones">
+        <div class="flex end actions cta">
+          <button class="btn-primary-hollow small uncurved" matRipple (click)="openCreateSpaceModal()" *ngIf="currentUser.ISMANAGER">Créer un Espace/Zone</button>
+        </div>
+        <space-or-group-list [isLoaded]="isLoadedSpace" [elementList]="spaceList"> </space-or-group-list>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</ng-template>

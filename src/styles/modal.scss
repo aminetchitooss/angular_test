@@ -1,0 +1,157 @@
+@use "src/styles/variables.scss" as var;
+
+mat-dialog-container {
+  border-radius: 4px;
+  min-height: 100%;
+  padding: 2rem;
+  height: auto;
+}
+
+@mixin modalIconClose {
+  svg-icon {
+    border-radius: 50%;
+    padding: 0.2rem;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--gray-150);
+    }
+    fill: var(--gray-300);
+  }
+}
+.modalClose-icon {
+  @include modalIconClose();
+}
+.modal-close {
+  justify-content: flex-end;
+  text-align: right;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.modal-title {
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 2rem;
+  max-width: calc(100% - 40px);
+}
+
+.modal-desc {
+  color: var(--gray-300);
+  line-height: 1.5rem;
+}
+
+// .default-dialog {
+//   animation: unfold 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) backwards;
+
+//   &.out {
+//     animation: fold 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) backwards;
+//   }
+// }
+// .confirmation-dialog {
+//   animation: zoomIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) backwards;
+
+//   &.out {
+//     animation: zoomOut 0.5s ease-in backwards;
+//   }
+// }
+
+.confirmation-dialog,
+.default-dialog {
+  .mat-dialog-container {
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
+  .mat-dialog-container > *:first-child {
+    position: relative;
+    display: block;
+  }
+}
+
+.features-dialog {
+  .mat-dialog-container {
+    padding: 2rem 2rem 1rem;
+  }
+  .mat-dialog-container > *:first-child {
+    position: relative;
+    display: block;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+@keyframes unfold {
+  0% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+
+  100% {
+    transform: scaleY(1) scaleX(1);
+  }
+}
+
+@keyframes fold {
+  0% {
+    transform: scaleY(1) scaleX(1);
+  }
+
+  50% {
+    transform: scaleY(0.005) scaleX(1);
+  }
+
+  100% {
+    transform: scaleY(0.005) scaleX(0);
+  }
+}
+@media (min-width: var.$minMidScreen) {
+  .modal-title {
+    margin-bottom: 2rem;
+  }
+}
+
+.radio-button {
+  $size: 1.5rem;
+  .mat-radio-label-content {
+    line-height: $size;
+  }
+  .mat-radio-container {
+    height: $size;
+    width: $size;
+    .mat-radio-inner-circle {
+      height: $size;
+      width: $size;
+    }
+    .mat-radio-outer-circle {
+      border-width: 1px;
+      height: $size;
+      width: $size;
+    }
+  }
+}
