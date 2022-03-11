@@ -32,12 +32,6 @@ export interface GroupDataSlot {
   NB_NONE: number | null;
 }
 
-export interface GroupUserInfo extends UserInfo {
-  STATUS_TYPE: STATUS_TYPE | null; //  null = si pas renseigné du tout pour la journée.
-  STATUS_TYPE_MORNING: STATUS_TYPE | null; //  null = si pas renseigné du tout pour lE MATIN
-  STATUS_TYPE_AFTER_NOON: STATUS_TYPE | null; //  null = si pas renseigné du tout pour L'APRES-MIDI
-}
-
 export interface DashDataSlotGauge {
   DATE: string;
   GAUGE: number;
@@ -167,18 +161,7 @@ export interface NameSearch {
   value: string;
   isAdmin?: boolean;
 }
-export interface SelectedDate {
-  isLocked: boolean;
-  increment: boolean;
-  activeDate: string;
-}
-export interface SelectedGroupDate {
-  groupSpaceId: number;
-  activeDate: string;
-}
-export interface UserSlotsData {
-  [key: string]: UserSlot;
-}
+
 export interface Edit_Group_Model {
   data: Group_Model;
   isDeleted: boolean;
