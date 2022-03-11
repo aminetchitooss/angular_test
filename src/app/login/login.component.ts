@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { projectVersion } from '../app.config';
+import { YToBottom, YToTop } from '../shared/animations/animation';
 import { validateEmail } from '../shared/global-utils/functions';
 import { AuthService } from '../shared/services/auth.service';
 import { ToastNotifService } from '../shared/services/toast-notif.service';
@@ -10,7 +11,8 @@ import { ToastNotifService } from '../shared/services/toast-notif.service';
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [YToBottom]
 })
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   version = projectVersion;

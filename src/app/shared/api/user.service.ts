@@ -30,7 +30,7 @@ export class UserService {
   }
 
   updateDaySlotStatus(pBody: UserSlot): Observable<Response_Type<UserSlot>> {
-    return of();
+    return of(pBody);
   }
 
   readLastVersionFeatures(pBody: { ID: number; LASTVERSIONREAD: string }): Observable<Response_Type<User_Model>> {

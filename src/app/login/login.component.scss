@@ -63,6 +63,10 @@ button {
   bottom: 3px;
 }
 
+.loginFrame {
+  overflow: hidden;
+}
+
 @media (min-width: 800px) {
   .loginFrame {
     display: flex;
