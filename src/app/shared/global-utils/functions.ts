@@ -59,15 +59,11 @@ export function isWeekend(date: Date): boolean {
   return date.getDay() == 0 || date.getDay() == 6;
 }
 
-export function apiDateFormat(date: Date): string {
-  return [date.getFullYear(), prefixSignleDigit(date.getMonth() + 1), prefixSignleDigit(date.getDate())].join('-');
-}
-
 export function getDate(date: string | Date): Date {
   if (typeof date == 'object') return new Date(date);
   return new Date(date.split(' ').join('T'));
 }
-export const lastday = function (y: number, m: number) {
+const lastday = function (y: number, m: number) {
   return new Date(y, m + 1, 0).getDate();
 };
 
@@ -101,15 +97,6 @@ export function isArrayEquals(a: NameSearch[], b: NameSearch[]) {
     a.length === b.length &&
     (a.length == 0 || a.every((name) => b.some((res) => res['isAdmin'] == name['isAdmin'] && res['value'] == name['value'])))
   );
-}
-
-// export function sortSearchResultByName(res: Response_Type<UserDataResult>): UserDataResult {
-//   res.day?.sort((a: DataSlot, b: DataSlot) => a.userInfo.FIRSTNAME.localeCompare(b.userInfo.FIRSTNAME));
-//   res.week?.sort((a: DataSlot, b: DataSlot) => a.userInfo.FIRSTNAME.localeCompare(b.userInfo.FIRSTNAME));
-//   return res;
-// }
-export function isExtern(user: User_Model): boolean {
-  return !user.INTERN;
 }
 
 export function getStatusResult(userSlot: UserSlot | undefined, includeNoneText: boolean): Partial<StatusTypeResult> {
@@ -210,23 +197,6 @@ export function getDailyCalendar(value: string, diffrenceBefore: number, diffren
   return vResult;
 }
 
-export function getWeekTitle(value: weekInterval | undefined): string {
-  if (!value) return '';
-  const startDate = getDate(value[0]);
-
-  const endDate = getDate(value[4]);
-  return [
-    'Du',
-    startDate.getDate(),
-    getMonthInLetter(startDate),
-    startDate.getFullYear() !== endDate.getFullYear() ? startDate.getFullYear() : '',
-    'au',
-    endDate.getDate(),
-    getMonthInLetter(endDate),
-    endDate.getFullYear()
-  ].join(' ');
-}
-
 export function getDashWeekTitle(value: weekInterval | undefined): string {
   if (!value) return '';
   const startDate = getDate(value[0]);
@@ -254,6 +224,7 @@ export function setUserSearchFromDashboard(pUser: NameSearch): void {
 export function clearUserSearchFromDashboard(): void {
   sessionStorage.removeItem(sessionIdUser);
 }
+
 export function isObjectEmpty(obj: Object): boolean {
   return (
     obj && // 👈 null and undefined check
@@ -268,36 +239,8 @@ export function isUnderToday(date: Date, today: Date): boolean {
   if (dateYear == todayYear) return date.getMonth() < today.getMonth();
   return dateYear < todayYear;
 }
-export function sortData(data: Response_Type<UserDataResult>, currentUpn: string | undefined): Response_Type<UserDataResult> {
-  if (!currentUpn) return data;
-  data.day = sortuserData(data.day, currentUpn);
-  data.week = !data.week ? data.week : [...data.week.filter((r) => r.userInfo.UPN == currentUpn), ...sortAlpha(data.week.filter((r) => r.userInfo.UPN !== currentUpn))];
-  return data;
-}
 
-function sortuserData(res: DataSlot[] | undefined, currentUpn: string): DataSlot[] | undefined {
-  if (!res) return res;
-
-  const currentUser = res.filter((r) => r.userInfo.UPN == currentUpn);
-  const nonCurrentUser = res.filter((r) => r.userInfo.UPN !== currentUpn);
-  const FullDay = nonCurrentUser.filter((r) => r.userSlots.some((s) => s.STATUS_TYPE_MORNING == s.STATUS_TYPE_AFTER_NOON));
-  const semiDay = nonCurrentUser.filter((r) => r.userSlots.some((s) => s.STATUS_TYPE_MORNING !== s.STATUS_TYPE_AFTER_NOON));
-
-  return [
-    ...currentUser,
-    ...sortAlpha(FullDay.filter((r) => r.userSlots.some((s) => s.STATUS_TYPE == STATUS_TYPE.Presential))),
-    ...sortAlpha(FullDay.filter((r) => r.userSlots.some((s) => s.STATUS_TYPE == STATUS_TYPE.Distance))),
-    ...sortAlpha(FullDay.filter((r) => r.userSlots.some((s) => s.STATUS_TYPE == STATUS_TYPE.Absent))),
-    ...sortAlpha(FullDay.filter((r) => r.userSlots.some((s) => s.STATUS_TYPE == STATUS_TYPE.None))),
-    ...sortAlpha(semiDay),
-    ...sortAlpha(FullDay.filter((r) => r.userSlots.some((s) => s.STATUS_TYPE == null)))
-  ];
-}
-
-function sortAlpha(data: DataSlot[]): DataSlot[] {
-  return data.sort((a: DataSlot, b: DataSlot) => a.userInfo.FIRSTNAME.localeCompare(b.userInfo.FIRSTNAME));
-}
-export function getDateActiveNonWeekend(date: string): string {
+function getDateActiveNonWeekend(date: string): string {
   const searchDateTemp = getDate(date);
   if (searchDateTemp.getDay() == 0) searchDateTemp.setDate(searchDateTemp.getDate() + 1);
   else if (searchDateTemp.getDay() == 6) searchDateTemp.setDate(searchDateTemp.getDate() + 2);

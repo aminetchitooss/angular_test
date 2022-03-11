@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { isExtern } from 'src/app/shared/global-utils/functions';
 import { Route_Link } from 'src/app/shared/models/models';
 import { User_Model } from 'src/app/shared/store/user/user.model';
 

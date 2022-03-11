@@ -7,7 +7,7 @@ import { filter, tap } from 'rxjs/operators';
 import { UserService } from 'src/app/shared/api/user.service';
 import { WARNING_MSG_UPDATE } from 'src/app/shared/global-utils/constants';
 import { getDate, getLastDateInMonth, getPreviousDateInMonth, getDashWeekTitle, setUserSearchFromDashboard, isUnderToday } from 'src/app/shared/global-utils/functions';
-import { ACTIVITY_VIEW, NameSearch, SemidayData, UserDataResult, UserSlot } from 'src/app/shared/models/models';
+import { ACTIVITY_VIEW, NameSearch, SemidayData, UserDataResult } from 'src/app/shared/models/models';
 import { DataService } from 'src/app/shared/services/data.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { ToastNotifService } from 'src/app/shared/services/toast-notif.service';
