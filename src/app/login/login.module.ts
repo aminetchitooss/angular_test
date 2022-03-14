@@ -9,10 +9,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { SvgIconModule } from '../shared/components/svg-icon/svg-icon.module';
-import { PostAuthLoadingComponent } from './post-auth-loading/post-auth-loading.component';
+import { PostAuthLoadingModule } from '../shared/components/post-auth-loading/post-auth-loading.module';
 
 @NgModule({
-  declarations: [LoginComponent, PostAuthLoadingComponent],
-  imports: [CommonModule, LoginRoutingModule, MatFormFieldModule, MatButtonModule, MatInputModule, MatRippleModule, FormsModule, ReactiveFormsModule, SvgIconModule]
+  declarations: [LoginComponent],
+  imports: [
+    CommonModule,
+    LoginRoutingModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatRippleModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SvgIconModule,
+    PostAuthLoadingModule
+  ]
 })
 export class LoginModule {}

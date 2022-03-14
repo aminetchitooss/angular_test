@@ -49,6 +49,11 @@
   display: none;
   text-align: center;
   height: 100%;
+
+  &.visible {
+    opacity: 1;
+    display: flex;
+  }
   .loginForm {
     border-radius: 16px;
     background-color: var(--bg-nav-color);
@@ -165,6 +170,7 @@
 
 app-root:empty + .splash {
   display: flex;
+  opacity: 1;
 }
 
 .spinner {

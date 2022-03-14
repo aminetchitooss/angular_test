@@ -13,17 +13,17 @@
     <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#1976d2" />
 
-    <meta name="description" content="Gerer le présentiel et le distanciel des collaborateurs afin de mieux organiser les Espaces/Zones, jauges, ..." />
+    <meta name="description" content="This is a light test app to illustarte some fun stuff" />
     <meta property="fb:app_id" content="795896254430016" />
     <meta property="og:title" content="myProject" />
     <meta property="og:site_name" content="myProject" />
-    <meta property="og:description" content="Gerer le présentiel et le distanciel des collaborateurs afin de mieux organiser les Espaces/Zones, jauges, ..." />
+    <meta property="og:description" content="This is a light test app to illustarte some fun stuff" />
     <meta property="og:image" content="https://welcome-df.web.app/assets/images/logo.png" />
     <meta property="og:type" content="website" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="myProject" />
-    <meta name="twitter:description" content="Gerer le présentiel et le distanciel des collaborateurs afin de mieux organiser les Espaces/Zones, jauges, ..." />
+    <meta name="twitter:description" content="This is a light test app to illustarte some fun stuff" />
     <meta name="twitter:image" content="https://welcome-df.web.app/assets/images/logo.png" />
 
     <link rel="apple-touch-icon" href="assets/images/logo.png" />
@@ -32,54 +32,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
   </head>
 
-  <script>
-    function setSkeleton() {
-      const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
-      if (isIE) {
-        document.getElementById("splash").innerHTML = `
-      <div class="center column isIE"> <img src="assets/images/ie.png" alt="ie">
-        <div class="text">
-          <h2>Browser not supported</h2>
-          <h3>Looks like you're using an ancient browser. Please use Chrome, Edge or Safari for a better experience</h3>
-        </div>
-      </div> `;
-      } else if (localStorage["save"] !== "true") {
-        document.getElementById("splash").innerHTML = `
-      <div class="center h-100 w-100">
-        <div class="loginForm">
-          <div class="center">
-            <div class="loginForm__logo">
-              <div class="div-pending"></div>
-            </div>
-          </div>
-          <div class="center column mb-12">
-            <div class="text-pending min mb-2"></div>
-            <div class="text-pending half"></div>
-          </div>
-          <div class="center">
-            <div class="max-size">
-              <div class="column al-start flex mb-12">
-                <div class="text-pending min mb-2"></div>
-                <div class="loginForm__mailDiv">
-                  <div class="div-pending mb-4"></div>
-                </div>
-              </div>
-              <div class="loginForm__login mb-12">
-                <div class="div-pending mb-4 rad"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      `;
-      }
-      document.getElementById("splash").style.opacity = "1";
-    }
-  </script>
-
-  <body onload="setSkeleton()">
+  <body>
     <app-root></app-root>
-    <div id="splash" class="splash">
+    <div class="splash flex">
       <div class="flex between desktop h-100 w-100">
         <div class="nav h-100">
           <div class="flex splash-profile w-100 between">
@@ -125,8 +80,8 @@
             <div class="text-pending title"></div>
           </div>
           <div class="splash-result flex column al-start h-100 w-100">
-            <div class="text-pending title first-text mb-2"></div>
-            <div class="text-pending half sub-text mb-4"></div>
+            <div class="text-pending title mb-2"></div>
+            <div class="text-pending half mb-4"></div>
           </div>
         </div>
       </div>
@@ -139,7 +94,7 @@
               <div class="text-pending full"></div>
             </div>
           </div>
-
+    
           <div class="splash-header frame flex w-100 mb-4">
             <div class="icon-pending small"></div>
             <div class="flex column">
