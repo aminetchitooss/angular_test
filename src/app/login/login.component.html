@@ -5,7 +5,7 @@
 <form *ngIf="loginDisplay == true" class="loginFrame h-100 w-100" (ngSubmit)="connect(save)">
   <div class="form center column h-100 w-100" [@YToBottom]>
     <img class="logo" src="assets/images/logo.png" alt="logo" />
-    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vero numquam.</p>
+    <p class="description" data-cy="desc-login">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora vero numquam.</p>
 
     <mat-label>Enter a token<sup>*</sup>: </mat-label>
     <mat-form-field class="login mb-1" appearance="outline">

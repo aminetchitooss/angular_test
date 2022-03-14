@@ -7,7 +7,8 @@
     "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "deploy": "npm run build && firebase deploy && python3 useToShowVersion.py",
-    "test": "ng test"
+    "test": "ng test",
+    "e2e": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -41,6 +42,7 @@
     "@angular/compiler-cli": "~13.0.0",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
+    "cypress": "^9.5.1",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
